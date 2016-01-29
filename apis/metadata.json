@@ -8,6 +8,9 @@
   "autoscaling": {
     "name": "AutoScaling"
   },
+  "awis": {
+    "name": "AWIS"
+  },
   "cloudformation": {
     "name": "CloudFormation"
   },

@@ -1,0 +1,295 @@
+{
+  "metadata": {
+    "apiVersion":"2005-07-11",
+    "checksumFormat":"md5",
+    "endpointPrefix":"awis",
+    "globalEndpoint":"awis.amazonaws.com",
+    "protocol":"query",
+    "serviceAbbreviation":"AWIS",
+    "serviceFullName":"Alexa Web Information Service",
+    "signatureVersion":"v2",
+    "timestampFormat":"rfc822"
+  },
+  "documentation": "",
+  "operations": {
+    "UrlInfo": {
+      "name": "UrlInfo",
+      "http": {
+        "method": "GET",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "UrlInfoInput"
+      },
+      "output": {
+        "shape": "UrlInfoResult"
+      },
+      "documentationUrl": "http://docs.aws.amazon.com/AlexaWebInfoService/latest/ApiReference_UrlInfoAction.html",
+      "documentation": "The UrlInfo action provides information about a website, such as: how popular the site is, what sites are related, contact information for the owner of the site"
+    }
+  },
+  "shapes": {
+    "UrlInfoInput": {
+      "type": "structure",
+      "required":[
+        "Action",
+        "ResponseGroup",
+        "Url"
+      ],
+      "members": {
+        "Action": {
+          "type": "string",
+          "location": "querystring"
+        },
+        "Url": {
+          "type": "string",
+          "location": "querystring"
+        },
+        "ResponseGroup": {
+          "type": "string",
+          "location": "querystring"
+        }
+      }
+    },
+    "DataUrl": {
+      "type": "string",
+      "min": 1,
+      "max": 255
+    },
+    "PhoneNumber": {
+      "type": "string",
+      "min": 0,
+      "max": 255
+    },
+    "PhoneNumbers": {
+      "type": "list",
+      "member": {
+        "shape": "PhoneNumber"
+      }
+    },
+    "OwnerName": {
+      "type": "string",
+      "min": 0,
+      "max": 1024
+    },
+    "Email": {
+      "type": "string",
+      "min": 0,
+      "max": 255
+    },
+    "Street": {
+      "type": "string",
+      "min": 0,
+      "max": 1024
+    },
+    "City": {
+      "type": "string",
+      "min": 0,
+      "max": 255
+    },
+    "Country": {
+      "type": "string",
+      "min": 0,
+      "max": 255
+    },
+    "Streets": {
+      "type": "list",
+      "member": {
+        "shape": "Street"
+      }
+    },
+    "PhysicalAddress": {
+      "type": "structure",
+      "members": {
+        "Streets": {
+          "shape": "Streets"
+        },
+        "City": {
+          "shape": "Country"
+        }
+      }
+    },
+    "Title": {
+      "type": "string",
+      "min": 0,
+      "max": 255
+    },
+    "LinksInCount": {
+      "type": "integer",
+      "min": 0
+    },
+    "Rank": {
+      "type": "structure",
+      "members": {
+        "Value": {
+          "type": "string",
+          "min": 0,
+          "max": 255
+        },
+        "Delta": {
+          "type": "string",
+          "min": 0,
+          "max": 255
+        }
+      }
+    },
+    "PerMillion": {
+      "type": "structure",
+      "members": {
+        "Value": {
+          "type": "string",
+          "min": 0,
+          "max": 255
+        },
+        "Delta": {
+          "type": "string",
+          "min": 0,
+          "max": 255
+        }
+      }
+    },
+    "PerUser": {
+      "type": "structure",
+      "members": {
+        "Value": {
+          "type": "string",
+          "min": 0,
+          "max": 255
+        },
+        "Delta": {
+          "type": "string",
+          "min": 0,
+          "max": 255
+        }
+      }
+    },
+    "Reach": {
+      "type": "structure",
+      "members": {
+        "Rank": {
+          "shape": "Rank"
+        },
+        "PerMillion": {
+          "shape": "PerMillion"
+        }
+      }
+    },
+    "PageViews": {
+      "type": "structure",
+      "members": {
+        "PerMillion": {
+          "shape": "PerMillion"
+        },
+        "Rank": {
+          "shape": "Rank"
+        },
+        "PerUser": {
+          "shape": "PerUser"
+        }
+      }
+    },
+    "TimeRange": {
+      "type": "structure",
+      "members": {
+        "Days": {
+          "type": "integer"
+        },
+        "Months": {
+          "type": "integer"
+        },
+        "Years": {
+          "type": "integer"
+        }
+      }
+    },
+    "SiteData": {
+      "type": "structure",
+      "members": {
+        "Title": {
+          "shape": "Title"
+        }
+      }
+    },
+    "ContentData": {
+      "type": "structure",
+      "members": {
+        "DataUrl": {
+          "shape": "DataUrl"
+        },
+        "SiteData": {
+          "shape": "SiteData"
+        },
+        "LinksInCount": {
+          "shape": "LinksInCount"
+        }
+      }
+    },
+    "TrafficData": {
+      "type": "structure",
+      "members": {
+        "DataUrl": {
+          "shape": "DataUrl"
+        },
+        "Rank": {
+          "type": "integer",
+          "min": 0
+        },
+        "UsageStatistics": {
+          "type": "list",
+          "member": {
+            "shape": "UsageStatistic"
+          }
+        }
+      }
+    },
+    "UsageStatistic": {
+      "type": "structure",
+      "members": {
+        "TimeRange": {
+          "shape": "TimeRange"
+        },
+        "Rank": {
+          "shape": "Rank"
+        },
+        "UsageStatistics": {
+          "type": "list",
+          "member": {
+            "shape": "UsageStatistic"
+          }
+        }
+      }
+    },
+    "Alexa": {
+      "type": "structure",
+      "members": {
+        "ContactInfo": {
+          "shape": "ContactInfo"
+        },
+        "ContentData": {
+          "shape": "ContentData"
+        },
+        "TrafficData": {
+          "shape": "TrafficData"
+        }
+      }
+    },
+    "UrlInfoResult": {
+      "type": "structure",
+      "members": {
+        "Alexa": {
+          "shape": "Alexa"
+        }
+      }
+    },
+    "OperationRequest": {
+      "type": "structure",
+      "members": {
+        "RequestId": {
+          "type": "string",
+          "min": 1,
+          "max": 255
+        }
+      }
+    }
+  }
+}
